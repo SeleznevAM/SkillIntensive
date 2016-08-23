@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">SkillIntensive</string>
+    <string name="phone_number_image">phone number image</string>
+    <string name="phone_number_hint">Мобильный телефон</string>
+    <string name="mail_hint">Адресс электронной почты</string>
+</resources>
