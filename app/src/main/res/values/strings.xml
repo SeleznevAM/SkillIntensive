@@ -1,6 +1,13 @@
 <resources>
-    <string name="app_name">SkillIntensive</string>
+    <string name="app_name">Александр Селезнев</string>
     <string name="phone_number_image">phone number image</string>
     <string name="phone_number_hint">Мобильный телефон</string>
     <string name="mail_hint">Адресс электронной почты</string>
+    <string name="vk_hint">"Профиль VK"</string>
+    <string name="repository_hint">Репозитории</string>
+    <string name="abooutme_hint">О себе</string>
+    <string name="about_me">Родился 08.12.1984  в г. обнинске Калужской области. В 1991 году переехал в г. Москву.
+                            До 1998 года учился в общеобразовательной шклое №1010. В 1998 в связи с переездом перешел в школу №818.
+                            В 1999 году поступил в колледж полиции №1, который закончил в 2003 году с профессией "Юрист правовед".
+                            С 2003 по 2016 года работал в полиции на различных должностях.</string>
 </resources>

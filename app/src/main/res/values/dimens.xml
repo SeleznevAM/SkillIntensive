@@ -6,5 +6,5 @@
     <dimen name="size_medium_32">32dp</dimen>
     <dimen name="size_small_16">16dp</dimen>
     <dimen name="size_very_small_8">8dp</dimen>
-    <dimen name="line_size_2">2dp</dimen>
+    <dimen name="line_size_1">1dp</dimen>
 </resources>
