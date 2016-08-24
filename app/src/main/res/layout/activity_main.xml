@@ -116,6 +116,7 @@
                     android:enabled="false"
                     android:focusable="false"
                     android:hint="@string/phone_number_hint"
+                    android:textStyle="normal"
                     android:inputType="phone"
                     android:text="89169161616"
                     android:textColor="@color/black"

@@ -1,5 +1,7 @@
 package com.example.alex.skillintensive.ui.activities;
 
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -9,6 +11,7 @@ import com.example.alex.skillintensive.util.ConstantManager;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = ConstantManager.LOG_PREFIX +  " mainActivity";
+    SharedPreferences mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
