@@ -11,7 +11,8 @@
         android:layout_width="match_parent"
         android:layout_height="108dp"
         android:background="@color/grey"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:baselineAligned="false">
         <RelativeLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -20,7 +21,7 @@
                 android:id="@+id/reat_tv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="5"
+                android:text="@string/number_5"
                 android:textColor="@android:color/white"
                 android:textSize="24sp"
                 android:gravity="center"
@@ -28,7 +29,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Рейтинг"
+                android:text="@string/reit"
                 android:gravity="center"
                 android:layout_below="@+id/reat_tv"
                 android:textColor="@android:color/white"
@@ -36,7 +37,7 @@
         </RelativeLayout>
         <LinearLayout
             android:layout_width="1dp"
-            android:layout_height="72dp"
+            android:layout_height="@dimen/size_big_72"
             android:layout_gravity="center"
             android:background="@color/grey_light"/>
         <RelativeLayout
@@ -47,7 +48,7 @@
                 android:id="@+id/coding_tv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="5"
+                android:text="@string/number_5"
                 android:textColor="@android:color/white"
                 android:gravity="center"
                 android:textSize="24sp"
@@ -55,7 +56,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Написано строчек кода"
+                android:text="@string/codding_string"
                 android:layout_below="@+id/coding_tv"
                 android:gravity="center"
                 android:textColor="@android:color/white"
@@ -63,7 +64,7 @@
         </RelativeLayout>
         <LinearLayout
             android:layout_width="1dp"
-            android:layout_height="72dp"
+            android:layout_height="@dimen/size_big_72"
             android:layout_gravity="center"
             android:background="@color/grey_light"/>
         <RelativeLayout
@@ -74,7 +75,7 @@
                 android:id="@+id/project_tv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="5"
+                android:text="@string/number_5"
                 android:textColor="@android:color/white"
                 android:gravity="center"
                 android:textSize="24sp"
@@ -82,7 +83,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Проектов"
+                android:text="@string/projects"
                 android:layout_below="@+id/project_tv"
                 android:gravity="center"
                 android:textColor="@android:color/white"
@@ -130,7 +131,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/line_size_1"
-        android:layout_marginLeft="72dp"
+        android:layout_marginLeft="@dimen/size_big_72"
         android:background="@color/grey"/>
 
     <LinearLayout
@@ -173,7 +174,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/line_size_1"
-        android:layout_marginLeft="72dp"
+        android:layout_marginLeft="@dimen/size_big_72"
         android:background="@color/grey"/>
 
     <LinearLayout
@@ -216,7 +217,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/line_size_1"
-        android:layout_marginLeft="72dp"
+        android:layout_marginLeft="@dimen/size_big_72"
         android:background="@color/grey"/>
 
     <LinearLayout
@@ -259,7 +260,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/line_size_1"
-        android:layout_marginLeft="72dp"
+        android:layout_marginLeft="@dimen/size_big_72"
         android:background="@color/grey"/>
 
     <LinearLayout
@@ -301,7 +302,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/line_size_1"
-        android:layout_marginLeft="72dp"
+        android:layout_marginLeft="@dimen/size_big_72"
         android:background="@color/grey"/>
 
 
