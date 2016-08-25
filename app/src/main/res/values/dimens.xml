@@ -8,4 +8,5 @@
     <dimen name="size_very_small_8">8dp</dimen>
     <dimen name="line_size_1">1dp</dimen>
     <dimen name="size_big_72">72dp</dimen>
+    <dimen name="avatar_size_60">60dp</dimen>
 </resources>
