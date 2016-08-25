@@ -31,9 +31,14 @@ public class BaseActivity extends AppCompatActivity {
             mProgressDialog.show();
             mProgressDialog.setContentView(R.layout.dialog_splash);
         }
+        else{
+            mProgressDialog.show();
+            mProgressDialog.setContentView(R.layout.dialog_splash);
+        }
     }
 
     public void hideProgress(){
+        mProgressDialog.hide();
 
     }
 }
