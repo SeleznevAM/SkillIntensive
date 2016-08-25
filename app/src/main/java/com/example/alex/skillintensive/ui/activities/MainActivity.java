@@ -5,19 +5,23 @@ import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.ImageView;
 
 import com.example.alex.skillintensive.R;
 import com.example.alex.skillintensive.util.ConstantManager;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity implements View.OnClickListener {
     private static final String TAG = ConstantManager.LOG_PREFIX +  " mainActivity";
-    SharedPreferences mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+    private ImageView mPhoneImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Log.d(TAG, "onCreate");
+        mPhoneImage = (ImageView) findViewById(R.id.phone_img);
+        mPhoneImage.setOnClickListener(this);
     }
 
     @Override
@@ -54,5 +58,14 @@ public class MainActivity extends AppCompatActivity {
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         Log.d(TAG, "onSaveInstanceState");
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch(v.getId()){
+            case R.id.phone_img:
+                showProgress();
+                break;
+        }
     }
 }
