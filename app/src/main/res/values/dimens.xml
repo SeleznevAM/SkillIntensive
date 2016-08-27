@@ -10,4 +10,5 @@
     <dimen name="size_big_72">72dp</dimen>
     <dimen name="avatar_size_60">60dp</dimen>
     <dimen name="profile_image_size_256">256dp</dimen>
+    <dimen name="fab_right_space">8dp</dimen>
 </resources>
