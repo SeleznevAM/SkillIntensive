@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="match_parent"
                 android:layout_height="172dp"
-                android:background="@drawable/i"
+
                 android:paddingLeft="@dimen/size_small_16"
                 android:paddingRight="@dimen/size_small_16"
                 android:paddingTop="@dimen/size_small_24">

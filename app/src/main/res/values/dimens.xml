@@ -11,4 +11,6 @@
     <dimen name="avatar_size_60">60dp</dimen>
     <dimen name="profile_image_size_256">256dp</dimen>
     <dimen name="fab_right_space">8dp</dimen>
+    <dimen name="placeholder_photo_size_90">90dp</dimen>
+    <dimen name="size_meduim_56">56dp</dimen>
 </resources>

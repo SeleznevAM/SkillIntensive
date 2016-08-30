@@ -4,7 +4,8 @@ import android.app.Application;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
-public class SkillintensiveApplication extends Application {
+public class
+SkillintensiveApplication extends Application {
     private static SharedPreferences sSharedPreferences;
 
     @Override

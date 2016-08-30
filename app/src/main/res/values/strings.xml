@@ -14,4 +14,6 @@
     <string name="projects">Проектов</string>
     <string name="reit">Рейтинг</string>
     <string name="codding_string">Написано строчек кода</string>
+    <string name="my_phone_number">89169161616</string>
+    <string name="user_profile.placeholder.image">Изменить фотографию профиля</string>
 </resources>

@@ -1,0 +1,333 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="108dp"
+            android:background="@color/grey"
+            android:baselineAligned="false"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.25">
+
+                <TextView
+                    android:id="@+id/reat_tv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:gravity="center"
+                    android:text="@string/number_5"
+                    android:textColor="@android:color/white"
+                    android:textSize="24sp"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/reat_tv"
+                    android:gravity="center"
+                    android:text="@string/reit"
+                    android:textColor="@android:color/white"
+                    />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="1dp"
+                android:layout_height="@dimen/size_big_72"
+                android:layout_gravity="center"
+                android:background="@color/grey_light"/>
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.5">
+
+                <TextView
+                    android:id="@+id/coding_tv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:gravity="center"
+                    android:text="@string/number_5"
+                    android:textColor="@android:color/white"
+                    android:textSize="24sp"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/coding_tv"
+                    android:gravity="center"
+                    android:text="@string/codding_string"
+                    android:textColor="@android:color/white"
+                    />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="1dp"
+                android:layout_height="@dimen/size_big_72"
+                android:layout_gravity="center"
+                android:background="@color/grey_light"/>
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.25">
+
+                <TextView
+                    android:id="@+id/project_tv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:gravity="center"
+                    android:text="@string/number_5"
+                    android:textColor="@android:color/white"
+                    android:textSize="24sp"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/project_tv"
+                    android:gravity="center"
+                    android:text="@string/projects"
+                    android:textColor="@android:color/white"
+                    />
+            </RelativeLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/size_very_small_8"
+            android:layout_marginTop="@dimen/size_very_small_8">
+
+            <ImageView
+                style="@style/icon.left"
+                android:contentDescription="@string/phone_number_image"
+                android:src="@drawable/ic_local_phone_black_24dp"/>
+
+            <LinearLayout
+                style="@style/central_ll"
+                android:orientation="vertical">
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:id="@+id/user_phone_et"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:enabled="false"
+                        android:focusable="false"
+                        android:hint="@string/phone_number_hint"
+                        android:inputType="phone"
+                        android:text="89169161616"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/grey_light"
+                        android:textStyle="normal"/>
+                </android.support.design.widget.TextInputLayout>
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/phone_img"
+                style="@style/icon.right"
+                android:src="@drawable/ic_phone_in_talk_black_24dp"/>
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/line_size_1"
+            android:layout_marginLeft="@dimen/size_big_72"
+            android:background="@color/grey"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/size_very_small_8"
+            android:layout_marginTop="@dimen/size_very_small_8">
+
+            <ImageView
+                style="@style/icon.left"
+                android:contentDescription="@string/phone_number_image"
+                android:src="@drawable/ic_email_black_24dp"/>
+
+            <LinearLayout
+                style="@style/central_ll"
+                android:orientation="vertical">
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:id="@+id/user_mail_et"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:enabled="false"
+                        android:focusable="false"
+                        android:hint="@string/mail_hint"
+                        android:inputType="textEmailAddress"
+                        android:text="myMail@mymail.ru"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/grey_light"/>
+                </android.support.design.widget.TextInputLayout>
+            </LinearLayout>
+
+            <ImageView
+                style="@style/icon.right"
+                android:src="@drawable/ic_send_black_24dp"/>
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/line_size_1"
+            android:layout_marginLeft="@dimen/size_big_72"
+            android:background="@color/grey"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/size_very_small_8"
+            android:layout_marginTop="@dimen/size_very_small_8">
+
+            <ImageView
+                style="@style/icon.left"
+                android:contentDescription="@string/phone_number_image"
+                android:src="@drawable/vk_circle"/>
+
+            <LinearLayout
+                style="@style/central_ll"
+                android:orientation="vertical">
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:id="@+id/user_vk_et"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:enabled="false"
+                        android:focusable="false"
+                        android:hint="@string/vk_hint"
+                        android:inputType="textEmailAddress"
+                        android:text="https://vk.com/id370575593"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/grey_light"/>
+                </android.support.design.widget.TextInputLayout>
+            </LinearLayout>
+
+            <ImageView
+                style="@style/icon.right"
+                android:src="@drawable/ic_visibility_black_24dp"/>
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/line_size_1"
+            android:layout_marginLeft="@dimen/size_big_72"
+            android:background="@color/grey"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/size_very_small_8"
+            android:layout_marginTop="@dimen/size_very_small_8">
+
+            <ImageView
+                style="@style/icon.left"
+                android:contentDescription="@string/phone_number_image"
+                android:src="@drawable/github_circle"/>
+
+            <LinearLayout
+                style="@style/central_ll"
+                android:orientation="vertical">
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:id="@+id/user_git_et"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:enabled="false"
+                        android:focusable="false"
+                        android:hint="@string/repository_hint"
+                        android:inputType="textEmailAddress"
+                        android:text="https://github.com/SeleznevAM/SkillIntensive"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/grey_light"/>
+                </android.support.design.widget.TextInputLayout>
+            </LinearLayout>
+
+            <ImageView
+                style="@style/icon.right"
+                android:src="@drawable/ic_visibility_black_24dp"/>
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/line_size_1"
+            android:layout_marginLeft="@dimen/size_big_72"
+            android:background="@color/grey"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/size_very_small_8"
+            android:layout_marginTop="@dimen/size_very_small_8">
+
+            <ImageView
+                style="@style/icon.left"
+                android:contentDescription="@string/phone_number_image"
+                android:src="@drawable/ic_account_circle_black_24dp"/>
+
+            <LinearLayout
+                style="@style/central_ll"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:id="@+id/user_bio_et"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:enabled="false"
+                        android:focusable="false"
+                        android:hint="@string/abooutme_hint"
+                        android:inputType="textMultiLine"
+                        android:text="@string/about_me"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/grey_light"/>
+                </android.support.design.widget.TextInputLayout>
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/line_size_1"
+            android:layout_marginLeft="@dimen/size_big_72"
+            android:background="@color/grey"/>
+
+
+    </LinearLayout>
+</android.support.v4.widget.NestedScrollView>

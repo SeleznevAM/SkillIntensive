@@ -3,6 +3,8 @@ package com.example.alex.skillintensive.ui.activities;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.provider.ContactsContract;
+import android.support.design.widget.AppBarLayout;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -17,6 +19,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 
 import com.example.alex.skillintensive.R;
 import com.example.alex.skillintensive.data.managers.DataManager;
@@ -27,16 +30,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends BaseActivity implements View.OnClickListener {
-    private static final String TAG = ConstantManager.LOG_PREFIX +  " mainActivity";
+    private static final String TAG = ConstantManager.LOG_PREFIX + " mainActivity";
     private ImageView mPhoneImage;
     private Toolbar mToolbar;
     private DrawerLayout mNAvigationDrawer;
     private CoordinatorLayout mCoordinatorLayout;
     private FloatingActionButton mFab;
     private EditText mUserPhone, mUserMail, mUserVk, mUserGit, mUSerBio;
-    private int mCurrentMode =0; //Переключатель  для опеределения режима редактирования
+    private int mCurrentMode = 0; //Переключатель  для опеределения режима редактирования
     private DataManager mDataManager;
     private ImageView mUserAvatar;
+    private AppBarLayout mAppBarLayout;
+    private RelativeLayout mProfilePlaceholder;
+    private CollapsingToolbarLayout mCollapsingToolbar;
+    private AppBarLayout.LayoutParams mAppBarParams = null;
     private List<EditText> mUserInfoViews;
 
     @Override
@@ -55,7 +62,11 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         mUserGit = (EditText) findViewById(R.id.user_git_et);
         mUSerBio = (EditText) findViewById(R.id.user_bio_et);
         mUserAvatar = (ImageView) findViewById(R.id.user_avatar_img);
+        mAppBarLayout = (AppBarLayout) findViewById(R.id.appbar_layout);
+        mCollapsingToolbar = (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
         mDataManager = DataManager.getInstance();
+
+        mProfilePlaceholder = (RelativeLayout) findViewById(R.id.profile_placeholder);
 
         /**
          * Заполняем массив Вьюх пользовательских данных! Приоретено использовать библиотеку Butter_knife
@@ -75,13 +86,12 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         loadUserInfoValue();
 
 
-
         List<String> test = mDataManager.getPreferenceManager().loadUserProfileData();
 
 
-        if(savedInstanceState==null){
+        if (savedInstanceState == null) {
 
-        }else{
+        } else {
             mCurrentMode = savedInstanceState.getInt(ConstantManager.EDIT_MODE_KEY, 0);
             changeEditMode(mCurrentMode);
         }
@@ -122,37 +132,41 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         Log.d(TAG, "onSaveInstanceState");
-        outState.putInt(ConstantManager.EDIT_MODE_KEY,mCurrentMode);
+        outState.putInt(ConstantManager.EDIT_MODE_KEY, mCurrentMode);
     }
 
     @Override
     public void onClick(View v) {
-        switch(v.getId()){
+        switch (v.getId()) {
             case R.id.phone_img:
                 showProgress();
                 break;
             case R.id.fab:
-                if(mCurrentMode == 0){
+                if (mCurrentMode == 0) {
                     changeEditMode(1);
                     showSnackbar("Режим редактирования");
                     mCurrentMode = 1;
-                }else{
+                } else {
                     changeEditMode(0);
-                    mCurrentMode =0;
+                    mCurrentMode = 0;
                 }
 
                 break;
+            case R.id.placeholder_photo_img:{
+                // TODO: 30.08.2016  Реализовать выбор инструмента откуда загружить фото 
+            }
         }
     }
 
-    private void showSnackbar(String message){
-        Snackbar.make(mCoordinatorLayout, message,Snackbar.LENGTH_LONG).show();
+    private void showSnackbar(String message) {
+        Snackbar.make(mCoordinatorLayout, message, Snackbar.LENGTH_LONG).show();
     }
 
-    private void setupToolbar(){
+    private void setupToolbar() {
         setSupportActionBar(mToolbar);
-        ActionBar actionBar  = getSupportActionBar();
-        if(actionBar!=null){
+        ActionBar actionBar = getSupportActionBar();
+        mAppBarParams = (AppBarLayout.LayoutParams) mCollapsingToolbar.getLayoutParams(); //Получение параметров КолапсингТулбара
+        if (actionBar != null) {
             actionBar.setHomeAsUpIndicator(R.drawable.ic_menu_black_24dp); //Устновить кнопку
             actionBar.setDisplayHomeAsUpEnabled(true);  //ПРоказывать кнопку
         }
@@ -160,13 +174,13 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) { //Отрабатывает клик по элементам меню Toolbar
-        if(item.getItemId()== android.R.id.home){ //Если элемент меню - это кнопка Home то
+        if (item.getItemId() == android.R.id.home) { //Если элемент меню - это кнопка Home то
             mNAvigationDrawer.openDrawer(GravityCompat.START); //показать боковое меню слева
         }
         return super.onOptionsItemSelected(item);
     }
 
-    private void setupDrawer(){
+    private void setupDrawer() {
         final NavigationView navigationView = (NavigationView) findViewById(R.id.navigation_view);
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -181,6 +195,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     /**
      * Переключает режим редактирования
+     *
      * @param mode ксли 1 - режим редактирования если 0 режим просмотра
      */
     private void changeEditMode(int mode) {
@@ -190,13 +205,16 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 userValue.setEnabled(true);
                 userValue.setFocusable(true);
                 userValue.setFocusableInTouchMode(true);
+                showProfilePlaceholder();
+                lockToolbar();
             }
         } else {
             mFab.setImageResource(R.drawable.ic_edit_black_24dp);
             for (EditText userValue : mUserInfoViews) {
                 userValue.setFocusable(false);
                 userValue.setEnabled(false);
-
+                hideProfilePlaceholder();
+                unlockToolbar();
             }
         }
     }
@@ -204,20 +222,41 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     /**
      * Загрузка пользовательских данных
      */
-    private void loadUserInfoValue(){
+    private void loadUserInfoValue() {
         List<String> userData = mDataManager.getPreferenceManager().loadUserProfileData();
-        for (int i = 0; i <userData.size() ; i++) {
+        for (int i = 0; i < userData.size(); i++) {
             mUserInfoViews.get(i).setText(userData.get(i));
         }
     }
+
     /**
      * Сохранение пользовательских данных
      */
-    private void saveUserInfoValue(){
-        List<String> userData  = new ArrayList<>();
-        for (EditText userFieldView  : mUserInfoViews) {
+    private void saveUserInfoValue() {
+        List<String> userData = new ArrayList<>();
+        for (EditText userFieldView : mUserInfoViews) {
             userData.add(userFieldView.getText().toString());
         }
         mDataManager.getPreferenceManager().saveUserProfileData(userData);
     }
+
+    private void hideProfilePlaceholder() {
+        mProfilePlaceholder.setVisibility(View.GONE);
+    }
+
+    private void showProfilePlaceholder() {
+        mProfilePlaceholder.setVisibility(View.VISIBLE);
+    }
+
+    private void lockToolbar(){
+        mAppBarLayout.setExpanded(true,true);  //Программное указание в каком положени должен находится Аппбар true - раскрыт, афдыу - схлопнут
+        mAppBarParams.setScrollFlags(0);  //Убрать все скрол флаги
+        mCollapsingToolbar.setLayoutParams(mAppBarParams);
+    }
+
+    private void unlockToolbar(){
+        mAppBarParams.setScrollFlags(AppBarLayout.LayoutParams.SCROLL_FLAG_SCROLL| AppBarLayout.LayoutParams.SCROLL_FLAG_EXIT_UNTIL_COLLAPSED);
+        mCollapsingToolbar.setLayoutParams(mAppBarParams);
+    }
+
 }
