@@ -16,4 +16,8 @@
     <string name="codding_string">Написано строчек кода</string>
     <string name="my_phone_number">89169161616</string>
     <string name="user_profile.placeholder.image">Изменить фотографию профиля</string>
+    <string name="user_profile_dialog.gallery">Загрузить фото из галереи</string>
+    <string name="user_profile_dialog.camera">Сделать снимок</string>
+    <string name="user_profile_dialog.cancel">Отмена</string>
+    <string name="user_profile_dialog.title">Изменить фотографию профиля</string>
 </resources>

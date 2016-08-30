@@ -1,7 +1,10 @@
 package com.example.alex.skillintensive.ui.activities;
 
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.provider.ContactsContract;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
@@ -13,6 +16,7 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
@@ -81,6 +85,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
         mFab.setOnClickListener(this);
         mPhoneImage.setOnClickListener(this);
+        mProfilePlaceholder.setOnClickListener(this);
         setupToolbar();
         setupDrawer();
         loadUserInfoValue();
@@ -153,7 +158,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
                 break;
             case R.id.placeholder_photo_img:{
-                // TODO: 30.08.2016  Реализовать выбор инструмента откуда загружить фото 
+                // TODO: 30.08.2016  Реализовать выбор инструмента откуда загружить фото
+                showDialog(ConstantManager.LOAD_PROFILE_PHOTO);
             }
         }
     }
@@ -206,6 +212,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 userValue.setFocusable(true);
                 userValue.setFocusableInTouchMode(true);
                 showProfilePlaceholder();
+                mCollapsingToolbar.setCollapsedTitleTextColor(Color.TRANSPARENT); // сделать цвет текста прозрачным
                 lockToolbar();
             }
         } else {
@@ -214,6 +221,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 userValue.setFocusable(false);
                 userValue.setEnabled(false);
                 hideProfilePlaceholder();
+                mCollapsingToolbar.setCollapsedTitleTextColor(getResources().getColor(R.color.white));
                 unlockToolbar();
             }
         }
@@ -259,4 +267,52 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         mCollapsingToolbar.setLayoutParams(mAppBarParams);
     }
 
+
+    /**
+     * Метод для создания контекстного меню
+     * @param id константа идентифицирующая какое меню надо вызывать
+     * @return
+     */
+    @Override
+    protected  Dialog onCreateDialog(int id) {
+        Log.d(TAG, "onCreateDialog");
+        switch (id){
+            case ConstantManager.LOAD_PROFILE_PHOTO:
+                String selectItems[] ={getString(R.string.user_profile_dialog_gallery), getString(R.string.user_profile_dialog_camera), getString(R.string.user_profile_dialog_cancel)}; //массив пунктов меню
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setTitle(R.string.user_profile_dialog_title);
+                builder.setItems(selectItems, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int choiseItem) {
+                        switch (choiseItem){
+                            case 0:
+                                // TODO: 30.08.2016  Загрузить из галереи
+                                loadPhotoFromGallery();
+                                showSnackbar("Загрузить из галереи");
+                                break;
+                            case 1:
+                                // TODO: 30.08.2016 Загрузить из камеры
+                                loadPhotoFromCamera();
+                                showSnackbar("Загрузить фото из камеры");
+                                break;
+                            case 2:
+                                // TODO: 30.08.2016 Оменить
+                                dialog.cancel();
+                                showSnackbar("Отмена");
+                                break;
+                        }
+                    }
+                });
+            return builder.create();
+            default: return null;
+        }
+    }
+
+    private void loadPhotoFromCamera() {
+
+    }
+
+    private void loadPhotoFromGallery() {
+
+    }
 }
