@@ -43,7 +43,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     private EditText mUserPhone, mUserMail, mUserVk, mUserGit, mUSerBio;
     private int mCurrentMode = 0; //Переключатель  для опеределения режима редактирования
     private DataManager mDataManager;
-    private ImageView mUserAvatar;
+    private ImageView mUserAvatar, mPlaceholderPhoto;
     private AppBarLayout mAppBarLayout;
     private RelativeLayout mProfilePlaceholder;
     private CollapsingToolbarLayout mCollapsingToolbar;
@@ -68,6 +68,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         mUserAvatar = (ImageView) findViewById(R.id.user_avatar_img);
         mAppBarLayout = (AppBarLayout) findViewById(R.id.appbar_layout);
         mCollapsingToolbar = (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
+        mPlaceholderPhoto = (ImageView) findViewById(R.id.placeholder_photo_img);
         mDataManager = DataManager.getInstance();
 
         mProfilePlaceholder = (RelativeLayout) findViewById(R.id.profile_placeholder);
@@ -85,7 +86,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
         mFab.setOnClickListener(this);
         mPhoneImage.setOnClickListener(this);
-        mProfilePlaceholder.setOnClickListener(this);
+        mPlaceholderPhoto.setOnClickListener(this);
         setupToolbar();
         setupDrawer();
         loadUserInfoValue();
@@ -160,6 +161,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             case R.id.placeholder_photo_img:{
                 // TODO: 30.08.2016  Реализовать выбор инструмента откуда загружить фото
                 showDialog(ConstantManager.LOAD_PROFILE_PHOTO);
+                showSnackbar("Hf,jnftn");
+                break;
             }
         }
     }
@@ -212,7 +215,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 userValue.setFocusable(true);
                 userValue.setFocusableInTouchMode(true);
                 showProfilePlaceholder();
-                mCollapsingToolbar.setCollapsedTitleTextColor(Color.TRANSPARENT); // сделать цвет текста прозрачным
+                mCollapsingToolbar.setExpandedTitleColor(Color.TRANSPARENT); // сделать цвет текста прозрачным
                 lockToolbar();
             }
         } else {
@@ -221,7 +224,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 userValue.setFocusable(false);
                 userValue.setEnabled(false);
                 hideProfilePlaceholder();
-                mCollapsingToolbar.setCollapsedTitleTextColor(getResources().getColor(R.color.white));
+                mCollapsingToolbar.setExpandedTitleColor(getResources().getColor(R.color.white));
                 unlockToolbar();
             }
         }
