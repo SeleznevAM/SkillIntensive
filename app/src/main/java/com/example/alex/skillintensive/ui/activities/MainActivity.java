@@ -2,10 +2,14 @@ package com.example.alex.skillintensive.ui.activities;
 
 import android.app.Dialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.net.Uri;
+import android.os.Environment;
 import android.provider.ContactsContract;
+import android.provider.MediaStore;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.CoordinatorLayout;
@@ -30,7 +34,11 @@ import com.example.alex.skillintensive.data.managers.DataManager;
 import com.example.alex.skillintensive.util.ConstantManager;
 import com.example.alex.skillintensive.util.RoundedAvatarDrawable;
 
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class MainActivity extends BaseActivity implements View.OnClickListener {
@@ -312,10 +320,33 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     }
 
     private void loadPhotoFromCamera() {
+        File photoFile=null;
+        Intent takeCaptureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        try {
+            photoFile = createImageFile();
+        } catch (IOException e) {
+            e.printStackTrace();
+            // TODO: 31.08.2016 Обработка ошибок
+        }
 
+        if(photoFile!=null){
+            // TODO: 31.08.2016 Передать файл в интент
+            takeCaptureIntent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(photoFile));
+        }
+        startActivityForResult(takeCaptureIntent, ConstantManager.REQUEST_CAMERA_PICTURE);
     }
 
     private void loadPhotoFromGallery() {
 
+    }
+    /*
+    Метод для создания файла в который будет запсана фотография с камеры
+     */
+    private File createImageFile() throws IOException {
+        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date()); //штамп времени для уникальности названия файла
+        String imageFileName = "JPEG_"+timeStamp + "_"; // Создали название файла
+        File storageDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES); // Задаем URI где будет находиться файл
+        File image = File.createTempFile(imageFileName, ".jpg", storageDir);
+        return image;
     }
 }
