@@ -122,6 +122,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         }
     }
 
+
     @Override
     protected void onStart() {
         super.onStart();
@@ -255,6 +256,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 showProfilePlaceholder();
                 mCollapsingToolbar.setExpandedTitleColor(Color.TRANSPARENT); // сделать цвет текста прозрачным
                 lockToolbar();
+                mUserPhone.setSelection(mUserPhone.getText().length());
+                mUserPhone.setPressed(true);
+                mUserPhone.setActivated(true);
             }
         } else {
             mFab.setImageResource(R.drawable.ic_edit_black_24dp);
@@ -264,6 +268,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 hideProfilePlaceholder();
                 mCollapsingToolbar.setExpandedTitleColor(getResources().getColor(R.color.white));
                 unlockToolbar();
+                mUserPhone.setActivated(false);
             }
         }
     }
@@ -434,4 +439,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
         startActivityForResult(appSettingsIntent, ConstantManager.PERMISSION_REQUEST_SETTING_CODE);
     }
+
+
 }
