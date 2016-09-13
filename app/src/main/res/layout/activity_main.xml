@@ -10,11 +10,13 @@
     tools:context=".ui.activities.MainActivity"
     >
 
+
     <android.support.design.widget.CoordinatorLayout
         android:id="@+id/coordinator_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         >
+
 
 
         <android.support.design.widget.AppBarLayout
@@ -24,12 +26,16 @@
             android:theme="@style/AppTheme.AppBarOverlay"
             android:fitsSystemWindows="true">
 
+
+
             <android.support.design.widget.CollapsingToolbarLayout
                 android:id="@+id/collapsing_toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:contentScrim="@color/color_primary"
                 app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+
 
                 <FrameLayout
                     android:layout_width="match_parent"
@@ -73,6 +79,8 @@
                 </FrameLayout>
 
 
+
+
                 <android.support.v7.widget.Toolbar
                     android:id="@+id/toolbar"
                     android:layout_width="match_parent"
@@ -81,9 +89,9 @@
                     app:layout_collapseMode="pin"
                     android:fitsSystemWindows="true"/>
             </android.support.design.widget.CollapsingToolbarLayout>
-
-
         </android.support.design.widget.AppBarLayout>
+
+
 
         <include layout="@layout/user_profile_content"/>
 
@@ -95,6 +103,7 @@
             android:src="@drawable/ic_edit_black_24dp"
             app:layout_anchor="@id/appbar_layout"
             app:layout_anchorGravity="bottom|right"/>
+
     </android.support.design.widget.CoordinatorLayout>
 
 
@@ -105,6 +114,8 @@
         android:layout_gravity="left"
         app:headerLayout="@layout/drawer_header"
         app:menu="@menu/drawer_menu">
+
+
 
     </android.support.design.widget.NavigationView>
 </android.support.v4.widget.DrawerLayout>

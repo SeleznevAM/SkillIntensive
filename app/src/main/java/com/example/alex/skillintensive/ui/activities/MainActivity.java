@@ -51,7 +51,7 @@ import java.util.List;
 
 public class MainActivity extends BaseActivity implements View.OnClickListener {
     private static final String TAG = ConstantManager.LOG_PREFIX + " mainActivity";
-    private ImageView mPhoneImage;
+    private ImageView mPhoneImage, msendMailImage;
     private Toolbar mToolbar;
     private DrawerLayout mNAvigationDrawer;
     private CoordinatorLayout mCoordinatorLayout;
@@ -90,6 +90,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         mProfileImage = (ImageView) findViewById(R.id.user_photo_img);
         mDataManager = DataManager.getInstance();
         mProfilePlaceholder = (RelativeLayout) findViewById(R.id.profile_placeholder);
+        msendMailImage = (ImageView) findViewById(R.id.send_mail_img);
 
         /**
          * Заполняем массив Вьюх пользовательских данных! Приоретено использовать библиотеку Butter_knife
@@ -105,6 +106,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         mFab.setOnClickListener(this);
         mPhoneImage.setOnClickListener(this);
         mPlaceholderPhoto.setOnClickListener(this);
+        msendMailImage.setOnClickListener(this);
         setupToolbar();
         setupDrawer();
         loadUserInfoValue();
@@ -184,7 +186,15 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.phone_img:
-                showProgress();
+                Intent phoneIntent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + mUserPhone.getText()));
+                startActivity(phoneIntent);
+                break;
+            case R.id.send_mail_img:
+                Intent maillIntent = new Intent(Intent.ACTION_SEND);
+                maillIntent.setType("text/plain");
+                maillIntent.putExtra(Intent.EXTRA_EMAIL, mUserMail.getText());
+                maillIntent.putExtra(Intent.EXTRA_TEXT, "Hello! World");
+                startActivity(maillIntent);
                 break;
             case R.id.fab:
                 if (mCurrentMode == 0) {

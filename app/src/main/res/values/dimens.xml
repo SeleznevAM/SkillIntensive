@@ -13,4 +13,5 @@
     <dimen name="fab_right_space">8dp</dimen>
     <dimen name="placeholder_photo_size_90">90dp</dimen>
     <dimen name="size_meduim_56">56dp</dimen>
+    <dimen name="user_info_wrapper_size_112">112dp</dimen>
 </resources>
