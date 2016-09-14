@@ -1,4 +1,7 @@
 <resources>
+    <string name="ff_medium">sans-serif-medium</string>
+    <string name="ff_regular">sans-serif</string>
+
     <string name="app_name">Александр Селезнев</string>
     <string name="phone_number_image">phone number image</string>
     <string name="phone_number_hint">Мобильный телефон</string>
