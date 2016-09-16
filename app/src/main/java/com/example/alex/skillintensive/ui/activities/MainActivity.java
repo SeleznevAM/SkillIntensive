@@ -36,7 +36,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
-import com.example.alex.skillintensive.R;
 import com.example.alex.skillintensive.data.managers.DataManager;
 import com.example.alex.skillintensive.util.ConstantManager;
 import com.example.alex.skillintensive.util.RoundedAvatarDrawable;
