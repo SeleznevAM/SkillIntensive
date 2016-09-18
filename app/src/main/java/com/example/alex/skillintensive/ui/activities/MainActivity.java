@@ -6,12 +6,9 @@ import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Environment;
-import android.provider.ContactsContract;
 import android.provider.MediaStore;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
@@ -35,10 +32,12 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
+import com.example.alex.skillintensive.R;
 import com.example.alex.skillintensive.data.managers.DataManager;
+import com.example.alex.skillintensive.data.network.resp.UserModelResp;
 import com.example.alex.skillintensive.util.ConstantManager;
-import com.example.alex.skillintensive.util.RoundedAvatarDrawable;
 import com.squareup.picasso.Picasso;
 
 import java.io.File;
@@ -55,6 +54,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     private DrawerLayout mNAvigationDrawer;
     private CoordinatorLayout mCoordinatorLayout;
     private FloatingActionButton mFab;
+    private TextView mUserValueRating, mUserValueCodeLine, mUserValueProject;
+    private List<TextView> mUserValueViews;
     private EditText mUserPhone, mUserMail, mUserVk, mUserGit, mUSerBio;
     private int mCurrentMode = 0; //Переключатель  для опеределения режима редактирования
     private DataManager mDataManager;
@@ -91,6 +92,12 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         mProfilePlaceholder = (RelativeLayout) findViewById(R.id.profile_placeholder);
         msendMailImage = (ImageView) findViewById(R.id.send_mail_img);
 
+        mUserValueRating = (TextView) findViewById(R.id.reat_tv);
+        mUserValueCodeLine = (TextView) findViewById(R.id.coding_tv);
+        mUserValueProject = (TextView) findViewById(R.id.project_tv);
+
+
+
         /**
          * Заполняем массив Вьюх пользовательских данных! Приоретено использовать библиотеку Butter_knife
          */
@@ -101,6 +108,11 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         mUserInfoViews.add(mUserGit);
         mUserInfoViews.add(mUSerBio);
 
+        mUserValueViews = new ArrayList<>();
+        mUserValueViews.add(mUserValueRating);
+        mUserValueViews.add(mUserValueCodeLine);
+        mUserValueViews.add(mUserValueProject);
+
 
         mFab.setOnClickListener(this);
         mPhoneImage.setOnClickListener(this);
@@ -109,6 +121,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         setupToolbar();
         setupDrawer();
         loadUserInfoValue();
+        loadUserValue();
         Picasso.with(this).load(mDataManager.getPreferenceManager().loadUserPhoto()).placeholder(R.drawable.avatar).into(mProfileImage);
 
 
@@ -366,8 +379,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     }
 
     private void loadPhotoFromCamera() {
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)== PackageManager.PERMISSION_GRANTED
-            && ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)==PackageManager.PERMISSION_GRANTED) {//Проверка разрешений для андроил выше версии 5
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED
+                && ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {//Проверка разрешений для андроил выше версии 5
             Intent takeCaptureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
             try {
                 mPhotoFile = createImageFile();
@@ -381,8 +394,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 takeCaptureIntent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(mPhotoFile));
                 startActivityForResult(takeCaptureIntent, ConstantManager.REQUEST_CAMERA_PICTURE);
             }
-        }else{
-            ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.CAMERA,
+        } else {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA,
                     Manifest.permission.WRITE_EXTERNAL_STORAGE}, ConstantManager.CAMERA_REQUEST_PERMISSION_CODE);
             Snackbar.make(mCoordinatorLayout, "Для корректной работы необходимо дать требуемые разрешения", Snackbar.LENGTH_LONG)
                     .setAction("Разрешить", new View.OnClickListener() {
@@ -400,11 +413,11 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
      */
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        if(requestCode == ConstantManager.CAMERA_REQUEST_PERMISSION_CODE && grantResults.length == 2){
-            if(grantResults[0]==PackageManager.PERMISSION_GRANTED){
+        if (requestCode == ConstantManager.CAMERA_REQUEST_PERMISSION_CODE && grantResults.length == 2) {
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 // TODO: 03.09.2016 тут обрабатываем разрешение (разрешение получено)
             }
-            if(grantResults[1]==PackageManager.PERMISSION_GRANTED){
+            if (grantResults[1] == PackageManager.PERMISSION_GRANTED) {
                 // TODO: 03.09.2016 тут обрабатываем разрешение (разрешение получено)
             }
         }
@@ -447,6 +460,16 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         Intent appSettingsIntent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS, Uri.parse("package:" + getPackageName()));
 
         startActivityForResult(appSettingsIntent, ConstantManager.PERMISSION_REQUEST_SETTING_CODE);
+    }
+
+    /**
+     * Метод для загрузки пользовательских данных из сети
+     */
+    private void loadUserValue(){
+        List<String> userData = mDataManager.getPreferenceManager().loadUserProfileValues();
+        for (int i = 0; i <userData.size() ; i++) {
+            mUserValueViews.get(i).setText(userData.get(i));
+        }
     }
 
 

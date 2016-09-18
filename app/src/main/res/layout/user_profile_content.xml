@@ -19,7 +19,7 @@
             android:background="@color/grey"
             android:baselineAligned="false"
             android:orientation="horizontal"
-            app:behavior_min_heigth = "56dp">
+            >
 
             <RelativeLayout
                 android:layout_width="0dp"

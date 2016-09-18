@@ -1,5 +1,6 @@
 package com.example.alex.skillintensive.data.network;
 
+import com.example.alex.skillintensive.data.network.interceptors.HeaderInterceptor;
 import com.example.alex.skillintensive.util.AppConfig;
 
 import okhttp3.OkHttpClient;
@@ -21,7 +22,9 @@ public class ServiceGenerator {
     public static <S> S createService(Class<S> serviceClass){
         HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
         logging.setLevel(HttpLoggingInterceptor.Level.BODY);
+        httpClient.addInterceptor(new HeaderInterceptor());
         httpClient.addInterceptor(logging);
+
         Retrofit retrofit = sBuilder.client(httpClient.build()).build();
         return retrofit.create(serviceClass);
 

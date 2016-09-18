@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.example.alex.skillintensive.R;
 import com.example.alex.skillintensive.util.ConstantManager;
 
 public class BaseActivity extends AppCompatActivity {

@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import com.example.alex.skillintensive.data.network.RestService;
 import com.example.alex.skillintensive.data.network.ServiceGenerator;
 import com.example.alex.skillintensive.data.network.req.UserLoginReq;
+import com.example.alex.skillintensive.data.network.resp.UserListRes;
 import com.example.alex.skillintensive.data.network.resp.UserModelResp;
 
 import retrofit2.Call;
@@ -40,5 +41,9 @@ public class DataManager {
         public Call<UserModelResp> loginUser (UserLoginReq userLoginReq){
             return mRestService.loginUser(userLoginReq);
         }
+
+    public Call<UserListRes> getUSerList(){
+        return mRestService.getUserList();
+    }
     //endregion
 }

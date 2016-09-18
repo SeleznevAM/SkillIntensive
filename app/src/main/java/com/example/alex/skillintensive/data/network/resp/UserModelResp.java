@@ -65,7 +65,20 @@ public class UserModelResp {
         public ProfileValues getProfileValues() {
             return profileValues;
         }
+
+        public Contacts getContacts() {
+            return contacts;
+        }
+
+        public Repositories getRepositories() {
+            return repositories;
+        }
+
+        public PublicInfo getPublicInfo() {
+            return publicInfo;
+        }
     }
+
 
     public class Repositories {
 
@@ -76,6 +89,9 @@ public class UserModelResp {
         @Expose
         private String updated;
 
+        public List<Repo> getRepo() {
+            return repo;
+        }
     }
 
     public class Repo {
@@ -90,6 +106,9 @@ public class UserModelResp {
         @Expose
         private String title;
 
+        public String getGit() {
+            return git;
+        }
     }
 
     public class PublicInfo {
@@ -107,6 +126,13 @@ public class UserModelResp {
         @Expose
         private String updated;
 
+        public String getBio() {
+            return bio;
+        }
+
+        public String getPhoto() {
+            return photo;
+        }
     }
 
     public class ProfileValues {
@@ -155,6 +181,13 @@ public class UserModelResp {
         @Expose
         private String token;
 
+        public String getToken() {
+            return token;
+        }
+
+        public User getUser() {
+            return user;
+        }
     }
     public class Contacts {
 
@@ -171,5 +204,16 @@ public class UserModelResp {
         @Expose
         private String updated;
 
+        public String getVk() {
+            return vk;
+        }
+
+        public String getPhone() {
+            return phone;
+        }
+
+        public String getEmail() {
+            return email;
+        }
     }
 }
