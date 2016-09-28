@@ -281,7 +281,8 @@
 
             <ImageView
                 style="@style/icon.right"
-                android:src="@drawable/ic_visibility_black_24dp"/>
+                android:src="@drawable/ic_visibility_black_24dp"
+                android:id="@+id/imageView"/>
         </LinearLayout>
 
         <View

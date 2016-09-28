@@ -42,8 +42,9 @@ public class DataManager {
             return mRestService.loginUser(userLoginReq);
         }
 
-    public Call<UserListRes> getUSerList(){
+    public Call<UserListRes> getUserList(){
         return mRestService.getUserList();
     }
+
     //endregion
 }

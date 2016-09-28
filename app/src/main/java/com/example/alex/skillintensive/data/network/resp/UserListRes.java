@@ -60,5 +60,6 @@ public class UserListRes {
         public String getFullName() {
             return firstName + " " + secondName;
         }
+
     }
 }
